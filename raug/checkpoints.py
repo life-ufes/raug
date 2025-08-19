@@ -112,7 +112,7 @@ def load_model (checkpoint_path, model, opt_fn=None, loss_fn=None, epoch=None):
         raise Exception ("The {} does not exist!".format(checkpoint_path))
 
     ckpt = torch.load(checkpoint_path)
-    model.load_state_dict(ckpt['model_state_dict'])
+    model.load_state_dict(ckpt['model_state_dict'], weights_only=False)
 
     if opt_fn is not None and loss_fn is not None:
         opt_fn.load_state_dict(ckpt['optimizer_state_dict'])
